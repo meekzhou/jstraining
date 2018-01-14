@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <script src="react.js"></script>
     <script src="react-dom.js"></script>
     <script src="babel.min.js"></script>
-  </head>
-  <body>
-    <div id="example"></div>
-    <script type="text/babel">
-ReactDOM.render(
-  <span>Hello World!</span>,
-  document.getElementById('example')
-);
-    </script>
-  </body>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    ReactDOM.render(
+        <span>Hello World!</span>,
+        document.getElementById('example')
+    );
+</script>
+
+<div id="example1"></div>
+<script type="text/babel">
+    ReactDOM.render(
+        <h1>Hello React</h1>,
+        document.getElementById("example1")
+    );
+</script>
+</body>
 </html>

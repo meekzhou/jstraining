@@ -1,39 +1,83 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <script src="react.js"></script>
     <script src="react-dom.js"></script>
     <script src="babel.min.js"></script>
-  </head>
-  <body>
-    <div id="example"></div>
-    <script type="text/babel">
-  class MyTitle extends React.Component {
-    constructor(...args) {
-      super(...args);
-      this.state = {
-        text: 'World'
-      };
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    class MyTitle extends React.Component {
+        constructor(...args) {
+            super(...args);
+            this.state = {
+                text: 'World',
+                isClicked: false
+            };
+        }
+
+        handleClick() {
+            let isClicked = !this.state.isClicked;
+            this.setState({
+                isClicked: isClicked,
+                text: isClicked ? 'Clicked' : 'World'
+            });
+        }
+
+        render() {
+            return <h1 onClick={this.handleClick.bind(this)}>
+                {'Hello ' + this.state.text}
+            </h1>;
+        }
     }
 
-    handleClick() {
-      this.setState({
-        text: 'Clicked'
-      });
+    ReactDOM.render(
+        <MyTitle/>,
+        document.getElementById('example')
+    )
+</script>
+
+<div id="example1"></div>
+<script type="text/babel">
+    class MyDom extends React.Component {
+        constructor(...args) {
+            super(...args);
+            this.state = {
+                color: 'red',
+                text: 'World',
+                isClicked: false
+            };
+        }
+
+        handleClick() {
+            let isClicked = !this.state.isClicked;
+            this.setState({
+                isClicked: isClicked,
+                text: isClicked ? this.currentTime() : 'World',
+                color: isClicked ? 'yellow' : 'red'
+            })
+        }
+
+        currentTime() {
+            var d = new Date();
+            return d.getFullYear() + 'year ' + (d.getMonth() + 1) + 'month ' + d.getDate() + 'day';
+        }
+
+        render() {
+            return <h1 onClick={this.handleClick.bind(this)}>
+                <span>Hello </span>
+                <span style={{color: this.state.color}}>{this.state.text}</span>
+            </h1>
+        }
+
     }
 
-    render() {
-      return <h1 onClick={this.handleClick.bind(this)}>
-        {'Hello ' + this.state.text}
-      </h1>;
-    }
-  };
-
-  ReactDOM.render(
-    <MyTitle/>,
-    document.getElementById('example')
-  );
-    </script>
-  </body>
+    ReactDOM.render(
+        <MyDom/>,
+        document.getElementById('example1')
+    )
+</script>
+</body>
 </html>
